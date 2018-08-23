@@ -92,6 +92,7 @@ public class MainActivity extends PluginManager
 	SharedPreferences.OnSharedPreferenceChangeListener,
 	AbsListView.MultiChoiceModeListener
 {
+	int exam = 0;
 	/**
 	 * operating modes
 	 */
