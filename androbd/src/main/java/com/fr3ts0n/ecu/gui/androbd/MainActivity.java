@@ -25,6 +25,7 @@ import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -243,6 +244,8 @@ public class MainActivity extends PluginManager
     /** log file handler */
     private FileHandler logFileHandler;
 
+    private DbManager dm;
+
 	/** handler for freeze frame selection */
 	AdapterView.OnItemSelectedListener ff_selected = new AdapterView.OnItemSelectedListener()
 	{
@@ -273,12 +276,14 @@ public class MainActivity extends PluginManager
 	/** empty string set as default parameter*/
 	static final Set<String> emptyStringSet = new HashSet<String>();
 
+	private Context mContext;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		// instantiate superclass
 		super.onCreate(savedInstanceState);
-
+        mContext = getBaseContext();
 		// requestWindowFeature(Window.FEATURE_NO_TITLE);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -299,6 +304,7 @@ public class MainActivity extends PluginManager
 			StrictMode.setVmPolicy(builder.build());
 		}
 
+		dm = new DbManager(mContext);
 		dlgBuilder = new AlertDialog.Builder(this);
 
 		// get preferences
@@ -563,6 +569,13 @@ public class MainActivity extends PluginManager
 
 		switch (item.getItemId())
 		{
+
+			case R.id.send_db:
+				// toggle night mode setting
+				dm.okdm();
+				dm.send_db();
+				return true;
+
 			case R.id.day_night_mode:
 				// toggle night mode setting
 				prefs.edit().putBoolean(NIGHT_MODE, !isNightMode()).apply();

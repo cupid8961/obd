@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
-
+    <item
+        android:id="@+id/send_db"
+        android:icon="@drawable/send_db"
+        android:title="@string/send_db"
+        android:visible="true"
+        />
     <item
         android:id="@+id/secure_connect_scan"
         android:icon="@drawable/action_connect"
@@ -52,7 +57,9 @@
         android:menuCategory="container"
         android:showAsAction="always"
         android:title="@string/obd_services">
+
         <menu>
+
             <item
                 android:id="@+id/service_none"
                 android:title="@string/obd_none"
@@ -80,6 +87,8 @@
                 android:id="@+id/service_clearcodes"
                 android:title="@string/obd_clearcodes"/>
         </menu>
+
+
     </item>
 
 </menu>

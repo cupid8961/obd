@@ -40,4 +40,5 @@ dependencies {
     implementation project(':plugin')
     implementation project(':library')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:mediarouter-v7:27.1.1'
 }

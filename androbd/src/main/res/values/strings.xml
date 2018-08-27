@@ -16,6 +16,7 @@
     <string name="back_again_to_exit">Press back again to close this app</string>
     <!-- menu  -->
     <string name="action_connect">Connect</string>
+    <string name="send_db">send_to_db</string>
     <string name="obd_none">NO service</string>
     <string name="obd_services">OBD Services</string>
     <string name="obd_veh_info">OBD Vehicle Info</string>
