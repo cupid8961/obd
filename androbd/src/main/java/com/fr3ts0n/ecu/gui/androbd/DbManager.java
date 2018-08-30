@@ -62,7 +62,9 @@ public class DbManager {
         String velociy = ""+velocity_rand;
         String distance = ""+(distance_rand+oCalendar.get(Calendar.MINUTE)/2);
         String fuel = ""+(50-oCalendar.get(Calendar.MINUTE)/5);
-        
+
+
+
 
         InsertData task = new InsertData();
         task.execute(IP_ADDRESS,time,velociy,distance,fuel,my_errorlog);

@@ -69,11 +69,12 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	public ObdItemAdapter(Context context, int resource, PvList pvs)
 	{
 		super(context, resource);
+
+		dm = new DbManager(context);
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		mInflater = (LayoutInflater) context
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		setPvList(pvs);
-		dm = new DbManager(context);
 	}
 
 	/**

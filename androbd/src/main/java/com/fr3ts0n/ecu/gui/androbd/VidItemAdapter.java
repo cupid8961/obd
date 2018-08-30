@@ -34,6 +34,7 @@ public class VidItemAdapter extends ObdItemAdapter
 
 
 	private DbManager dm;
+	private Context mContext;
 
 	public VidItemAdapter(Context context, int resource, PvList pvs)
 	{
@@ -47,6 +48,7 @@ public class VidItemAdapter extends ObdItemAdapter
 	public Collection<Object> getPreferredItems(PvList pvs, String preferenceKey)
 	{
 
+		dm = new DbManager(getContext());
 		dm.send_db("VidItemAdapter / pvs.tostring:"+pvs.toString() +", preferenceKey:"+preferenceKey);
 		return pvs.values();
 	}
