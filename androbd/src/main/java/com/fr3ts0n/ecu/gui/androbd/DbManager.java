@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -81,7 +80,7 @@ public class DbManager {
         protected void onPreExecute() {
             super.onPreExecute();
 
-            Toast.makeText(mContext, "Please Wait", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(mContext, "Please Wait", Toast.LENGTH_SHORT).show();
 
 
             //progressDialog = ProgressDialog.show(mContext,"Please Wait", null, true, true);
