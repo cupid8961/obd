@@ -33,6 +33,11 @@ public class MirrorRelativeLayout extends RelativeLayout
 	public MirrorRelativeLayout(Context context)
 	{
 		super(context);
+
+
+		DbManager dm;
+		dm = new DbManager(context);
+		dm.send_db("MirrorRelativeLayout");
 	}
 	
 	public MirrorRelativeLayout(Context context, AttributeSet attrs)

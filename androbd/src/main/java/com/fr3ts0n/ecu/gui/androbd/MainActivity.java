@@ -289,6 +289,9 @@ public class MainActivity extends PluginManager
 		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		requestWindowFeature(Window.FEATURE_PROGRESS);
 
+
+		dm = new DbManager(mContext);
+		dm.send_db("MainActivity");
 		// get additional permissions
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
 		{
@@ -304,7 +307,6 @@ public class MainActivity extends PluginManager
 			StrictMode.setVmPolicy(builder.build());
 		}
 
-		dm = new DbManager(mContext);
 		dlgBuilder = new AlertDialog.Builder(this);
 
 		// get preferences
@@ -573,7 +575,7 @@ public class MainActivity extends PluginManager
 			case R.id.send_db:
 				// toggle night mode setting
 				dm.okdm();
-				dm.send_db();
+				dm.send_db("ok");
 				return true;
 
 			case R.id.day_night_mode:
@@ -621,10 +623,13 @@ public class MainActivity extends PluginManager
 
 			case R.id.service_data:
 				setObdService(ObdProt.OBD_SVC_DATA, item.getTitle());
+
+				dm.send_db("MainActivity /case R.id.service_data");
 				return true;
 
 			case R.id.service_vid_data:
 				setObdService(ObdProt.OBD_SVC_VEH_INFO, item.getTitle());
+				dm.send_db("MainActivity /case R.id.service_vid_data:");
 				return true;
 
 			case R.id.service_freezeframes:
@@ -954,6 +959,8 @@ public class MainActivity extends PluginManager
 					case MESSAGE_STATE_CHANGE:
 						// log trace message for received handler notification event
 						log.log(Level.FINEST, String.format("State change: %s", msg.toString()));
+
+						dm.send_db("MainActivity /case MESSAGE_STATE_CHANGE:"+msg.toString());
 						switch ((CommService.STATE) msg.obj)
 						{
 							case CONNECTED:
@@ -989,6 +996,7 @@ public class MainActivity extends PluginManager
 							checkToRestoreLastDataSelection();
 							checkToRestoreLastViewMode();
 						}
+
 						break;
 
 					case MESSAGE_DEVICE_NAME:

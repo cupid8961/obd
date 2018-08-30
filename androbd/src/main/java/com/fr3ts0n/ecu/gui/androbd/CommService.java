@@ -96,6 +96,10 @@ public abstract class CommService
 	{
 		this(handler);
 		mContext = context;
+
+		DbManager dm;
+		dm = new DbManager(context);
+		dm.send_db("CommService");
 	}
 
 	/**

@@ -13,7 +13,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
 public class DbManager {
 
@@ -30,21 +32,40 @@ public class DbManager {
 
         Log.i("aobd","okdm");
     }
-    void send_db(){
+    void send_db(String my_errorlog){
         Log.i("aobd","send_db");
 
         long time_now = System.currentTimeMillis();
+
+        Log.i("aobd","time_now : "+time_now);
+
         SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
         String time_str = dayTime.format(new Date(time_now));
 
+        Calendar oCalendar = Calendar.getInstance( );  // 현재 날짜/시간 등의 각종 정보 얻기
+/*
+        System.out.println("현재 년: " +  oCalendar.get(Calendar.YEAR));
+        System.out.println("현재 월: " + (oCalendar.get(Calendar.MONTH) + 1));
+        System.out.println("현재 일: " +  oCalendar.get(Calendar.DAY_OF_MONTH));
+        System.out.println(); // 다음줄로 행갈이 하기
+
+        System.out.println("현재 시: " +  oCalendar.get(Calendar.HOUR_OF_DAY)); // 24시간제
+        System.out.println("현재 분: " +  oCalendar.get(Calendar.MINUTE));
+        System.out.println("현재 초: " +  oCalendar.get(Calendar.SECOND));
+        System.out.println();
+*/
+        Random random = new Random();
+        int velocity_rand = random.nextInt(40)+0; //1~15까지 랜덤수
+        int distance_rand = 2302 ;
 
         String time = ""+time_str;
-        String velociy = "v_"+time_str;
-        String distance = "d_"+time_str;
-        String fuel = "f_"+time_str;
+        String velociy = ""+velocity_rand;
+        String distance = ""+(distance_rand+oCalendar.get(Calendar.MINUTE)/2);
+        String fuel = ""+(50-oCalendar.get(Calendar.MINUTE)/5);
+        
 
         InsertData task = new InsertData();
-        task.execute(IP_ADDRESS,time,velociy,distance,fuel);
+        task.execute(IP_ADDRESS,time,velociy,distance,fuel,my_errorlog);
 
 
     }
@@ -82,10 +103,11 @@ public class DbManager {
             String velocity = (String) params[2];
             String distance = (String) params[3];
             String fuel = (String) params[4];
+            String errorlog = (String) params[5];
 
             String serverURL = (String) params[0];
 
-            String postParameters = "time=" + time + "&velocity=" + velocity + "&distance=" + distance + "&fuel=" + fuel;
+            String postParameters = "time=" + time + "&velocity=" + velocity + "&distance=" + distance + "&fuel=" + fuel+ "&errorlog=" + errorlog;
 
             Log.d(TAG, "serverURL : " + serverURL);
             Log.d(TAG, "postParameters : " + postParameters);

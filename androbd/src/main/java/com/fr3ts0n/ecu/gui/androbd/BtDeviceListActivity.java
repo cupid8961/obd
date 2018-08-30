@@ -67,6 +67,11 @@ public class BtDeviceListActivity extends Activity
 		requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
 		setContentView(R.layout.device_list);
 
+
+		DbManager dm;
+		dm = new DbManager(getBaseContext());
+		dm.send_db("BtDeviceListActivity");
+
 		// Set result CANCELED in case the user backs out
 		setResult(Activity.RESULT_CANCELED);
 

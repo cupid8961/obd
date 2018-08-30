@@ -57,6 +57,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 	private transient int minHeight;
 	private DisplayMetrics mDisplayMetrics;
 
+	private DbManager dm;
 	/** format for numeric labels */
 	protected static final NumberFormat labelFormat = new DecimalFormat("0;-#");
 
@@ -75,6 +76,10 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		this.minWidth = minWidth;
 		this.minHeight = minHeight;
 		mDisplayMetrics = metrics;
+
+		dm = new DbManager(context);
+
+		dm.send_db("ObdGaugeAdapter");
 	}
 
 	/* (non-Javadoc)
@@ -195,6 +200,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		// set new values for display
 		holder.tvDescr.setTextColor(ChartActivity.getItemColor(pid));
 		holder.tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
+		dm.send_db("ObdGaugeAdapter/holder.tvDescr:"+String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
 		// replace DialChart if needed
 		holder.gauge.removeViewAt(0);
 		holder.gauge.addView(new GraphicalView(getContext(), chartView), 0);
@@ -210,5 +216,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		series.set(0,
 			String.valueOf(currPv.get(EcuDataPv.FID_UNITS)),
 				((Number)event.getValue()).doubleValue());
+
+		dm.send_db("ObdGaugeAdapter/series.set:"+String.valueOf(currPv.get(EcuDataPv.FID_UNITS))+" , "+((Number)event.getValue()).doubleValue());
 	}
 }

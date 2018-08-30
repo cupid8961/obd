@@ -56,6 +56,10 @@ public class NetworkCommService
 	{
 		super(context, handler);
 		ser.setMessageHandler(elm);
+
+		DbManager dm;
+		dm = new DbManager(context);
+		dm.send_db("NetworkCommService");
 	}
 
 	@Override

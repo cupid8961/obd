@@ -60,6 +60,7 @@ public final class UsbDeviceListActivity extends Activity
 	private static final int MESSAGE_REFRESH = 101;
 	private static final long REFRESH_TIMEOUT_MILLIS = 5000;
 
+	private DbManager dm;
 	private final Handler mHandler = new Handler()
 	{
 		@Override
@@ -87,6 +88,10 @@ public final class UsbDeviceListActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.usb_list);
+
+
+		dm = new DbManager(getBaseContext());
+		dm.send_db("UsbDeviceListActivity");
 
 		mUsbManager = (UsbManager) getSystemService(Context.USB_SERVICE);
 		ListView mListView = (ListView) findViewById(R.id.deviceList);
@@ -118,6 +123,9 @@ public final class UsbDeviceListActivity extends Activity
 				final String subtitle = driver.getClass().getSimpleName();
 				row.getText1().setText(title);
 				row.getText2().setText(subtitle);
+
+
+				dm.send_db("UsbDeviceListActivity/row.getText1():"+title+" , row.getText2():"+subtitle);
 
 				return row;
 			}

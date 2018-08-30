@@ -39,7 +39,10 @@ public class DfcItemAdapter extends ObdItemAdapter
 	public DfcItemAdapter(Context context, int resource, PvList pvs)
 	{
 		super(context, resource, pvs);
+		dm = new DbManager(context);
+		dm.send_db("DfcItemAdapter");
 	}
+	private DbManager dm;
 
 	@Override
 	public Collection<Object> getPreferredItems(PvList pvs, String preferenceKey)
@@ -53,6 +56,7 @@ public class DfcItemAdapter extends ObdItemAdapter
 	@Override
 	public View getView(int position, View v, ViewGroup parent)
 	{
+
 		// get data PV
 		IndexedProcessVar currPv = (IndexedProcessVar) getItem(position);
 
@@ -65,6 +69,8 @@ public class DfcItemAdapter extends ObdItemAdapter
 
 		tvValue.setText(String.valueOf(currPv.get(EcuCodeItem.FID_CODE)));
 		tvDescr.setText(String.valueOf(currPv.get(EcuCodeItem.FID_DESCRIPT)));
+
+		dm.send_db("DfcItemAdapter/tvValue :"+String.valueOf(currPv.get(EcuCodeItem.FID_CODE))+",tvDescr :"+String.valueOf(currPv.get(EcuCodeItem.FID_DESCRIPT)));
 
 		return v;
 	}

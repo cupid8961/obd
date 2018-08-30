@@ -82,6 +82,7 @@ public class DashBoardActivity extends Activity
 		return mAdapter;
 	}
 
+	private DbManager dm;;
 	// screen distribution matrix
 	private static final int[][] rowCols=
 	{
@@ -139,6 +140,10 @@ public class DashBoardActivity extends Activity
 		super.onCreate(savedInstanceState);
 		// set to full screen
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+
+		dm = new DbManager(getBaseContext());
+		dm.send_db("DashBoardActivity");
 
 		// keep main display on?
 		if(MainActivity.prefs.getBoolean("keep_screen_on", false))
@@ -228,6 +233,8 @@ public class DashBoardActivity extends Activity
 				currPv.setRenderingComponent(null);
 				pidNumbers.add(currPv.getAsInt(EcuDataPv.FID_PID));
 				adapter.add(currPv);
+				dm.send_db("DashBoardActivity/pidNumbers.add :"+currPv.getAsInt(EcuDataPv.FID_PID));
+
 			}
 		}
 		grid.setAdapter(adapter);

@@ -57,6 +57,10 @@ public class CheckableRelativeLayout extends RelativeLayout implements
 	{
 		super(context);
 		initialise(null);
+
+		DbManager dm;
+		dm = new DbManager(context);
+		dm.send_db("CheckableRelativeLayout");
 	}
 
 	/*

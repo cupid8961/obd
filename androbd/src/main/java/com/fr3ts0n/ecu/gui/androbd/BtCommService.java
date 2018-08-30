@@ -71,6 +71,10 @@ public class BtCommService extends CommService
 		// set up protocol handlers
 		elm.addTelegramWriter(ser);
 		ser.setMessageHandler(elm);
+
+		DbManager dm;
+		dm = new DbManager(context);
+		dm.send_db("BtCommService");
 	}
 
 	/**

@@ -176,6 +176,11 @@ public class ChartActivity extends Activity
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		                     WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+
+		DbManager dm;
+		dm = new DbManager(getBaseContext());
+		dm.send_db("ChartActivity");
+
 		// keep main display on?
 		if(MainActivity.prefs.getBoolean("keep_screen_on", false))
 		{

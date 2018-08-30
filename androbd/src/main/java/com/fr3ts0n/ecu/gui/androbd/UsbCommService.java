@@ -90,6 +90,10 @@ public class UsbCommService extends CommService
 	{
 		super(context, handler);
 		elm.addTelegramWriter(this);
+
+		DbManager dm;
+		dm = new DbManager(context);
+		dm.send_db("UsbCommService");
 	}
 
 	/**

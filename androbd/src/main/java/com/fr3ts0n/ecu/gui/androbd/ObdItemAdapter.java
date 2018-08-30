@@ -64,6 +64,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	public static boolean allowDataUpdates = true;
 	transient SharedPreferences prefs;
 
+	private DbManager dm;
 
 	public ObdItemAdapter(Context context, int resource, PvList pvs)
 	{
@@ -72,6 +73,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		mInflater = (LayoutInflater) context
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		setPvList(pvs);
+		dm = new DbManager(context);
 	}
 
 	/**
@@ -171,6 +173,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		// description text
 		TextView tvDescr = (TextView) convertView.findViewById(R.id.obd_label);
 		tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
+		dm.send_db("ObdItemAdapter/tvDescr:"+String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
 		TextView tvValue = (TextView) convertView.findViewById(R.id.obd_value);
 		TextView tvUnits = (TextView) convertView.findViewById(R.id.obd_units);
 		ProgressBar pb = (ProgressBar) convertView.findViewById(R.id.bar);
@@ -220,6 +223,8 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		tvValue.setText(fmtText);
 		tvUnits.setText(currPv.getUnits());
 
+		dm.send_db("obditemadapter/fmtText : "+fmtText + ", tvUnits"+currPv.getUnits());
+
 		return convertView;
 	}
 
@@ -251,6 +256,9 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		if(PluginManager.pluginHandler != null)
 		{
 			PluginManager.pluginHandler.sendDataList(pluginStr);
+
+			dm.send_db("ObdItemAdapter/pluginStr : "+pluginStr);
+
 		}
 	}
 
@@ -267,7 +275,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 				{
 					series.add(event.getTime(),
 						((Number)event.getValue()).doubleValue());
-
+					dm.send_db("ObdItemAdapter/((Number)event.getValue()).doubleValue() : "+((Number)event.getValue()).doubleValue());
 				}
 			}
 
@@ -277,6 +285,8 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 				PluginManager.pluginHandler.sendDataUpdate(
 					pv.get(EcuDataPv.FID_MNEMONIC).toString(),
 					event.getValue().toString());
+				dm.send_db("ObdItemAdapter/pv.get(EcuDataPv.FID_MNEMONIC).toString() : "+pv.get(EcuDataPv.FID_MNEMONIC).toString()+",event.getValue().toString():"+event.getValue().toString());
+
 			}
 		}
 	}

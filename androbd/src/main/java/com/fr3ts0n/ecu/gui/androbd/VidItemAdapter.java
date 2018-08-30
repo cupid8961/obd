@@ -31,14 +31,23 @@ import java.util.Collection;
  */
 public class VidItemAdapter extends ObdItemAdapter
 {
+
+
+	private DbManager dm;
+
 	public VidItemAdapter(Context context, int resource, PvList pvs)
 	{
 		super(context, resource, pvs);
+
+		dm = new DbManager(context);
+		dm.send_db("VidItemAdapter / pvs.tostring:"+pvs.toString());
 	}
 
 	@Override
 	public Collection<Object> getPreferredItems(PvList pvs, String preferenceKey)
 	{
+
+		dm.send_db("VidItemAdapter / pvs.tostring:"+pvs.toString() +", preferenceKey:"+preferenceKey);
 		return pvs.values();
 	}
 
