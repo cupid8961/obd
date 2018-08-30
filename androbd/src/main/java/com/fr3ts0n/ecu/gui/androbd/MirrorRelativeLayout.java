@@ -36,7 +36,7 @@ public class MirrorRelativeLayout extends RelativeLayout
 
 
 		DbManager dm;
-		dm = new DbManager(context);
+		dm = new DbManager();
 		dm.send_db("MirrorRelativeLayout");
 	}
 	

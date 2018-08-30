@@ -290,8 +290,9 @@ public class MainActivity extends PluginManager
 		requestWindowFeature(Window.FEATURE_PROGRESS);
 
 
-		dm = new DbManager(mContext);
+		dm = new DbManager();
 		dm.send_db("MainActivity");
+
 		// get additional permissions
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
 		{

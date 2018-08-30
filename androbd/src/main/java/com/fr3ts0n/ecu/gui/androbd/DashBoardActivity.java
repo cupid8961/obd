@@ -142,7 +142,7 @@ public class DashBoardActivity extends Activity
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-		dm = new DbManager(getBaseContext());
+		dm = new DbManager();
 		dm.send_db("DashBoardActivity");
 
 		// keep main display on?

@@ -36,13 +36,15 @@ import java.util.Collection;
  */
 public class DfcItemAdapter extends ObdItemAdapter
 {
+
+	private Context mContext;
+	private DbManager dm;
 	public DfcItemAdapter(Context context, int resource, PvList pvs)
 	{
 		super(context, resource, pvs);
-		dm = new DbManager(context);
-		dm.send_db("DfcItemAdapter");
+		mContext = context;
+		dm = new DbManager();
 	}
-	private DbManager dm;
 
 	@Override
 	public Collection<Object> getPreferredItems(PvList pvs, String preferenceKey)

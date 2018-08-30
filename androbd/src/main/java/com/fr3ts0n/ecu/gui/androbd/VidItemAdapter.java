@@ -39,17 +39,13 @@ public class VidItemAdapter extends ObdItemAdapter
 	public VidItemAdapter(Context context, int resource, PvList pvs)
 	{
 		super(context, resource, pvs);
-
-		dm = new DbManager(context);
-		dm.send_db("VidItemAdapter / pvs.tostring:"+pvs.toString());
+		mContext = context;
+		dm = new DbManager();
 	}
 
 	@Override
 	public Collection<Object> getPreferredItems(PvList pvs, String preferenceKey)
 	{
-
-		dm = new DbManager(getContext());
-		dm.send_db("VidItemAdapter / pvs.tostring:"+pvs.toString() +", preferenceKey:"+preferenceKey);
 		return pvs.values();
 	}
 

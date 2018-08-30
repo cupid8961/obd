@@ -178,7 +178,7 @@ public class ChartActivity extends Activity
 
 
 		DbManager dm;
-		dm = new DbManager(getBaseContext());
+		dm = new DbManager();
 		dm.send_db("ChartActivity");
 
 		// keep main display on?

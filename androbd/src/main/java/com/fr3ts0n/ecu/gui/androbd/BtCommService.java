@@ -73,7 +73,7 @@ public class BtCommService extends CommService
 		ser.setMessageHandler(elm);
 
 		DbManager dm;
-		dm = new DbManager(context);
+		dm = new DbManager();
 		dm.send_db("BtCommService");
 	}
 

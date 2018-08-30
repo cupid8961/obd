@@ -70,7 +70,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	{
 		super(context, resource);
 
-		dm = new DbManager(context);
+		dm = new DbManager();
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		mInflater = (LayoutInflater) context
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -258,7 +258,6 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		{
 			PluginManager.pluginHandler.sendDataList(pluginStr);
 
-			dm.send_db("ObdItemAdapter/pluginStr : "+pluginStr);
 
 		}
 	}

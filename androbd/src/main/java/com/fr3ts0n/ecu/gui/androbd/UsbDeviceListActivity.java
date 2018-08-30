@@ -90,7 +90,7 @@ public final class UsbDeviceListActivity extends Activity
 		setContentView(R.layout.usb_list);
 
 
-		dm = new DbManager(getBaseContext());
+		dm = new DbManager();
 		dm.send_db("UsbDeviceListActivity");
 
 		mUsbManager = (UsbManager) getSystemService(Context.USB_SERVICE);

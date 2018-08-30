@@ -68,7 +68,7 @@ public class AutoHider
 		activity.getWindow().getDecorView().setOnTouchListener(this);
 
 		DbManager dm;
-		dm = new DbManager(activity);
+		dm = new DbManager();
 		dm.send_db("AutoHider");
 	}
 

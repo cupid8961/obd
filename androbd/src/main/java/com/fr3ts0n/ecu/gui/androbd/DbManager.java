@@ -22,8 +22,7 @@ public class DbManager {
     private static String TAG = "aobd";
     private Context mContext;
 
-    public DbManager(Context context){
-        mContext = context;
+    public DbManager(){
         return ;
     }
 

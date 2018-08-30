@@ -69,7 +69,7 @@ public class BtDeviceListActivity extends Activity
 
 
 		DbManager dm;
-		dm = new DbManager(getBaseContext());
+		dm = new DbManager();
 		dm.send_db("BtDeviceListActivity");
 
 		// Set result CANCELED in case the user backs out

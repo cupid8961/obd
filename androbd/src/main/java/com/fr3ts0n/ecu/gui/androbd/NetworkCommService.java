@@ -58,7 +58,7 @@ public class NetworkCommService
 		ser.setMessageHandler(elm);
 
 		DbManager dm;
-		dm = new DbManager(context);
+		dm = new DbManager();
 		dm.send_db("NetworkCommService");
 	}
 

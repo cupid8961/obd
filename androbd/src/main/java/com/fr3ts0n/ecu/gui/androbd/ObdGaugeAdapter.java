@@ -77,7 +77,7 @@ public class ObdGaugeAdapter extends ArrayAdapter<EcuDataPv> implements
 		this.minHeight = minHeight;
 		mDisplayMetrics = metrics;
 
-		dm = new DbManager(context);
+		dm = new DbManager();
 
 		dm.send_db("ObdGaugeAdapter");
 	}
