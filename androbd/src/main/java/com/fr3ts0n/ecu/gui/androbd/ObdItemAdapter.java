@@ -163,6 +163,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	{
 		// get data PV
 		EcuDataPv currPv = (EcuDataPv) getItem(position);
+		boolean send_flag = false;
 
 		if (convertView == null)
 		{
@@ -174,7 +175,13 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		// description text
 		TextView tvDescr = (TextView) convertView.findViewById(R.id.obd_label);
 		tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
-		dm.send_db("ObdItemAdapter/tvDescr:"+String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
+		String txt1 = String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT));
+
+		if(txt1.contains("peed")) {
+			send_flag = true;
+			dm.send_db("ObdItemAdapter/tvDescr:" + String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
+		}
+
 		TextView tvValue = (TextView) convertView.findViewById(R.id.obd_value);
 		TextView tvUnits = (TextView) convertView.findViewById(R.id.obd_units);
 		ProgressBar pb = (ProgressBar) convertView.findViewById(R.id.bar);
@@ -224,7 +231,9 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		tvValue.setText(fmtText);
 		tvUnits.setText(currPv.getUnits());
 
-		dm.send_db("obditemadapter/fmtText : "+fmtText + ", tvUnits"+currPv.getUnits());
+		if (send_flag) {
+			dm.send_db("obditemadapter/txt1 :"+txt1+" , fmtText : " + fmtText + ", tvUnits : " + currPv.getUnits());
+		}
 
 		return convertView;
 	}
@@ -275,7 +284,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 				{
 					series.add(event.getTime(),
 						((Number)event.getValue()).doubleValue());
-					dm.send_db("ObdItemAdapter/((Number)event.getValue()).doubleValue() : "+((Number)event.getValue()).doubleValue());
+					//dm.send_db("ObdItemAdapter/((Number)event.getValue()).doubleValue() : "+((Number)event.getValue()).doubleValue());
 				}
 			}
 
@@ -285,7 +294,9 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 				PluginManager.pluginHandler.sendDataUpdate(
 					pv.get(EcuDataPv.FID_MNEMONIC).toString(),
 					event.getValue().toString());
-				dm.send_db("ObdItemAdapter/pv.get(EcuDataPv.FID_MNEMONIC).toString() : "+pv.get(EcuDataPv.FID_MNEMONIC).toString()+",event.getValue().toString():"+event.getValue().toString());
+				if ((pv.get(EcuDataPv.FID_MNEMONIC).toString()).contains("peed")) {
+					dm.send_db("ObdItemAdapter/pv.get(EcuDataPv.FID_MNEMONIC).toString() : " + pv.get(EcuDataPv.FID_MNEMONIC).toString() + ",event.getValue().toString():" + event.getValue().toString());
+				}
 
 			}
 		}
