@@ -175,11 +175,11 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		// description text
 		TextView tvDescr = (TextView) convertView.findViewById(R.id.obd_label);
 		tvDescr.setText(String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
-		String txt1 = String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT));
 
-		if(txt1.contains("peed")) {
+		String txt2 = String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT));
+		if(txt2.contains("peed")) {
 			send_flag = true;
-			dm.send_db("ObdItemAdapter/tvDescr:" + String.valueOf(currPv.get(EcuDataPv.FID_DESCRIPT)));
+			dm.send_db("ObdItemAdapter/tvDescr:" +txt2);
 		}
 
 		TextView tvValue = (TextView) convertView.findViewById(R.id.obd_value);
@@ -232,7 +232,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		tvUnits.setText(currPv.getUnits());
 
 		if (send_flag) {
-			dm.send_db("obditemadapter/txt1 :"+txt1+" , fmtText : " + fmtText + ", tvUnits : " + currPv.getUnits());
+			dm.send_db("obditemadapter/txt2 :"+txt2+" , fmtText : " + fmtText + ", tvUnits : " + currPv.getUnits());
 		}
 
 		return convertView;
