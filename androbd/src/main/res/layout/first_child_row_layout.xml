@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tab_list_round"
+    >
+
+    <real_bus_tablet.CirCleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/kid_image_arrive"
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        app:civ_border_width="0dp"
+        app:civ_border_color="#FF000000"
+        />
+<LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:textSize="19sp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:id="@+id/tab_kid_name"
+        android:text="child2"
+        android:gravity="center"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.3"/>
+
+</LinearLayout>
+    <ImageView
+        android:id="@+id/late_image_check"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"
+        android:scaleType="center"
+        />
+
+<LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="fill_parent"
+    android:layout_weight="3"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:gravity="center|right"
+            android:id="@+id/tab_kid_state"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="child2"
+            android:textColor="#000"
+            android:textStyle="bold" />
+
+        <TextView
+
+            android:id="@+id/tab_kid_time"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="child2"
+            android:textColor="#000"
+            android:gravity="center|left"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:id="@+id/late_check_image">
+
+        <Button
+            android:id="@+id/hand_check"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="35dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginBottom="10dp"
+            android:text="수동 버튼"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:background="#16AFC5"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+</LinearLayout>

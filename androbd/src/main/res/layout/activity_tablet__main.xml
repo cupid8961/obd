@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.example.kst03.real_bus_tablet.Tablet_MainActivity"
+    android:orientation="horizontal"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#16AFC5"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/fb"
+                android:layout_height="30dp"
+                android:id="@+id/ref_btn"/>
+
+            <Button
+                android:id="@+id/bt_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:drawable/arrow_down_float" />
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.7"
+                />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="#fff"
+                    android:text="ABCDEFG"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:id="@+id/top_route_name"
+                    android:textSize="25dp" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:background="@mipmap/header_x1"
+                    android:textColor="#fff"
+                    android:id="@+id/board_count"
+                    android:layout_width="220dp"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal|center"
+                    android:text="1234"
+                    android:textSize="20dp" />
+            </LinearLayout>
+
+            <Button
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="29dp"
+                android:layout_marginBottom="15dp"
+                android:background="@mipmap/butten_end"
+                android:id="@+id/exit_drive"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.7"/>
+
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@mipmap/main_image_x1"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="3">
+
+                <LinearLayout
+                    android:layout_width="300dip"
+                    android:layout_height="250dip"
+                    android:layout_marginTop="60dp"
+                    android:layout_marginLeft="82dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:text="현재 정류장"
+                        android:gravity="center|bottom"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:textSize="25dp"
+                        android:id="@+id/n_s_1"
+                        android:gravity="center|top"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:text="도착시간"
+                        android:gravity="center|bottom"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:id="@+id/n_a_1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center|top"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:layout_marginLeft="36dp"
+                        android:background="@mipmap/count_bar_blue_x1"
+                        android:textSize="20dp"
+                        android:textColor="#fff"
+                        android:gravity="center"
+                        android:id="@+id/n_b_1"
+                        android:layout_width="230dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/image3"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                 />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="3">
+
+                <LinearLayout
+                    android:layout_width="300dip"
+                    android:layout_height="290dip"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginTop="60dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center|bottom"
+                        android:text="다음 정류장"
+                        android:textColor="#000"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:id="@+id/n_s_2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center|top"
+                        android:textSize="25dp" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center|bottom"
+                        android:text="도착예정시간" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:textColor="#000"
+                        android:id="@+id/n_a_2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center|top"
+                        android:textSize="20dp" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:background="@mipmap/count_bar_yellow_x1"
+                        android:layout_marginLeft="36dp"
+                        android:textColor="#fff"
+                        android:id="@+id/n_b_2"
+                        android:layout_width="230dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textSize="20dp" />
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.5"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="3dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"/>
+                        <Button
+                            android:background="@mipmap/pass_yellow_120x25px"
+
+                            android:id="@+id/next_station_btn"
+                            android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"
+                            android:layout_gravity="center_vertical"
+                            />
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="fill_parent"
+                            android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:background="@drawable/real_time_bolder"
+                android:divider="#000"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iw1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:src="@mipmap/tablet" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/station_name1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="50dp"
+                    android:layout_weight="2.04"
+                    android:gravity="center_horizontal"
+                    android:textColor="#000"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/a_t_1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:layout_marginBottom="30dp"
+                    android:textColor="#000"
+                    android:textSize="15dp"
+                    android:gravity="center_horizontal"
+                     />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iw2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:src="@mipmap/tablet" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/station_name2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2.04"
+                    android:gravity="center_horizontal"
+                    android:layout_marginBottom="50dp"
+                    android:textColor="#000"
+                    android:textSize="22dp" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/a_t_2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:gravity="center_horizontal"
+                    android:layout_marginBottom="30dp"
+                    android:textColor="#000"
+                    android:textSize="15dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/real_time_bolder"
+                android:orientation="vertical">
+
+                <ImageView
+
+                    android:id="@+id/iw3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:src="@mipmap/tablet"/>
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginBottom="50dp"
+                    android:textColor="#000"
+                    android:textSize="22dp"
+                    android:id="@+id/station_name3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2.04"
+                    android:gravity="center_horizontal"/>
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/a_t_3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:layout_marginBottom="30dp"
+                    android:textColor="#000"
+                    android:textSize="15dp"
+                    android:gravity="center_horizontal"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iw4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:src="@mipmap/point_1_x2" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/station_name4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="50dp"
+                    android:layout_weight="2.04"
+                    android:gravity="center_horizontal|top"
+                    android:textColor="#000"
+                    android:textSize="22dp"
+
+                    />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/a_t_4"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_weight="2"
+                    android:gravity="center_horizontal"
+                    android:textColor="#000"
+                    android:textSize="15dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:background="@drawable/real_time_bolder"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iw5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:src="@mipmap/point_1_x2" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/station_name5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2.04"
+                    android:gravity="center_horizontal"
+                    android:layout_marginBottom="50dp"
+                    android:textColor="#000"
+                    android:textSize="22dp"/>
+
+                <TextView
+                    android:textStyle="bold"
+                    android:id="@+id/a_t_5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:gravity="center_horizontal"
+                    android:layout_marginBottom="30dp"
+                    android:textColor="#000"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.7"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.93"
+            android:orientation="vertical"
+            android:background="#16AFC5">
+
+            <TextView
+                android:background="#16AFC5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2.3"
+                android:background="@mipmap/header_gray_bar_370x76px"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/bt_tab1"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="4.5dp"
+                    android:layout_marginRight="4.5dp"
+                    android:layout_weight="1"
+                    android:background="@mipmap/butten_on_car" />
+
+                <Button
+                    android:background="@mipmap/butten_late"
+                    android:id="@+id/bt_tab2"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="4.5dp"
+                    android:layout_marginRight="4.5dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_height="fill_parent"
+                    android:layout_weight="1"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:background="#F1F1F1"
+            android:id="@+id/fragment_container"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7" />
+    </LinearLayout>
+</LinearLayout>
+

@@ -1,0 +1,23 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kst03.real_bus_tablet.Tab_Second_Fragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ListView
+        android:listSelector="@android:color/transparent"
+        android:groupIndicator="@android:color/transparent"
+        android:id="@+id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="10dp"
+        android:scrollbars="none"
+        android:divider ="@null"
+        android:dividerHeight="8dp"
+        >
+    </ListView>
+
+</FrameLayout>

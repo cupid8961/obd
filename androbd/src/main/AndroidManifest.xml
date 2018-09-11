@@ -30,17 +30,6 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
-            </intent-filter>
-
-            <meta-data
-                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
-                android:resource="@xml/device_filter"/>
         </activity>
         <activity
             android:name=".UsbDeviceListActivity"
@@ -72,6 +61,25 @@
             android:label="@string/settings"
             android:theme="@style/AppTheme.Dark"
             />
+
+        <activity android:name="real_bus_tablet.Tablet_Drive_Start_Activity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name="real_bus_tablet.Tablet_MainActivity"></activity>
+        <activity android:name="real_bus_tablet.Tablet_LoginActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.hardware.usb.action.USB_DEVICE_ATTACHED"
+                android:resource="@xml/device_filter"/>
+        </activity>
     </application>
 
 </manifest>

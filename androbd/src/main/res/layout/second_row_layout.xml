@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/list_round_edit"
+    android:padding="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="horizontal">
+
+            <com.example.kst03.real_bus_tablet.CirCleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/kid_late_image"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="2"
+                app:civ_border_width="0dp"
+                app:civ_border_color="#FF000000"/>
+
+            <TextView
+                android:text="123"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:textSize="19sp"
+                android:id="@+id/textitem"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_weight="3"
+                android:gravity="center_vertical" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="123"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:id="@+id/textitem1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:gravity="center_vertical|right|bottom"
+                android:layout_weight="1"/>
+            <TextView
+                android:gravity="center_vertical|top|right"
+                android:id="@+id/textitem2"
+                android:textSize="15sp"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/late_cont_res"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="#000"
+            />
+    </LinearLayout>
+</LinearLayout>
