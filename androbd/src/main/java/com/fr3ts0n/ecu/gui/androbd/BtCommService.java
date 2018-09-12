@@ -49,7 +49,7 @@ public class BtCommService extends CommService
 	private BtWorkerThread mBtWorkerThread;
 	/** communication stream handler */
 	public StreamHandler ser = new StreamHandler();;
-
+	DbManager dm;
 
 	/**
 	 * Constructor. Prepares a new Communication session.
@@ -72,7 +72,6 @@ public class BtCommService extends CommService
 		elm.addTelegramWriter(ser);
 		ser.setMessageHandler(elm);
 
-		DbManager dm;
 		dm = new DbManager();
 		dm.send_db("BtCommService");
 	}
@@ -309,6 +308,7 @@ public class BtCommService extends CommService
 		public BtWorkerThread(BluetoothSocket socket, String socketType)
 		{
 			log.fine("create BtWorkerThread: " + socketType);
+			dm.send_db("BtCommService/socketType : "+socketType);
 			mmSocket = socket;
 			InputStream tmpIn = null;
 			OutputStream tmpOut = null;
@@ -327,6 +327,7 @@ public class BtCommService extends CommService
 			mmOutStream = tmpOut;
 			// set streams
 			ser.setStreams(mmInStream, mmOutStream);
+			dm.send_db("BtCommService/mmInStream.tostring() : "+mmInStream.toString()+" / mmOutStream.toString() :"+ mmOutStream.toString());
 		}
 
 		/**
@@ -354,7 +355,9 @@ public class BtCommService extends CommService
 		 */
 		public void write(byte[] buffer)
 		{
+
 			ser.writeTelegram(new String(buffer).toCharArray());
+			dm.send_db("BtCommService/write /ser.writeTelegram : )"+new String(buffer).toCharArray());
 		}
 
 		public void cancel()

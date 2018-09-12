@@ -65,6 +65,7 @@ public abstract class CommService
 	protected Handler mHandler = null;
 	protected STATE mState;
 
+    DbManager dm;
 	/**
 	 * Constructor. Prepares a new Communication session.
 	 */
@@ -97,7 +98,6 @@ public abstract class CommService
 		this(handler);
 		mContext = context;
 
-		DbManager dm;
 		dm = new DbManager();
 		dm.send_db("CommService");
 	}
@@ -114,6 +114,7 @@ public abstract class CommService
 
 		// Give the new state to the Handler so the UI Activity can update
 		mHandler.obtainMessage(MainActivity.MESSAGE_STATE_CHANGE, state).sendToTarget();
+
 	}
 
 	/**

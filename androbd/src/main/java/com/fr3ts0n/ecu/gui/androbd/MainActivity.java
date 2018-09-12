@@ -291,7 +291,7 @@ public class MainActivity extends PluginManager
 
 
 		dm = new DbManager();
-		dm.send_db("MainActivity");
+        dm.send_db("MainActivity");
 
 		// get additional permissions
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
@@ -424,9 +424,15 @@ public class MainActivity extends PluginManager
 		}
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+	}
+
 	/**
 	 * Handler for application start event
 	 */
+
 	@Override
 	public void onStart()
 	{
@@ -575,7 +581,7 @@ public class MainActivity extends PluginManager
 
 			case R.id.send_db:
 				// toggle night mode setting
-				dm.okdm();
+
 				dm.send_db("ok");
 				return true;
 
