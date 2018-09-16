@@ -89,8 +89,15 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		isPidList = (pvs == ObdProt.PidPvs);
 		// get set to be displayed (filtered with preferences */
 		Collection<Object> filtered = getPreferredItems(pvs, SettingsActivity.KEY_DATA_ITEMS);
+		dm.send_db("ObdItemAdapter/setPvList/filtered.toString():"+filtered.toString());
 		// make it a sorted array
 		Object[] pidPvs = filtered.toArray();
+		if (pidPvs.length > 0) {
+			dm.send_db("ObdItemAdapter/setPvList/pidPvs[0]" + pidPvs[0].toString());
+			dm.send_db("ObdItemAdapter/setPvList/pidPvs[length-1]" + pidPvs[(pidPvs.length - 1)].toString());
+		}
+
+
 		Arrays.sort(pidPvs, pidSorter);
 
 		clear();
@@ -131,6 +138,8 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		// filter PVs with preference selections
 		Set<String> pidsToShow = prefs.getStringSet( SettingsActivity.KEY_DATA_ITEMS,
 		                                             (Set<String>)pvs.keySet());
+		dm.send_db("ObdItemAdapter/getPreferredItems/pidsToShow: " +pidsToShow.toString());
+
 		return getMatchingItems(pvs, pidsToShow);
 	}
 
@@ -266,6 +275,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		if(PluginManager.pluginHandler != null)
 		{
 			PluginManager.pluginHandler.sendDataList(pluginStr);
+			dm.send_db("ObdItemAdapter / pluginStr : "+pluginStr);
 
 
 		}

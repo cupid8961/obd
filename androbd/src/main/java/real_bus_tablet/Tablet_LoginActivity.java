@@ -23,6 +23,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.fr3ts0n.ecu.gui.androbd.EcuService;
 import com.fr3ts0n.ecu.gui.androbd.R;
 
 import org.json.JSONArray;
@@ -38,17 +39,49 @@ public class Tablet_LoginActivity extends Activity {
     private EditText login_edit;
     private EditText password_edit;
     private Button login_btn;
+    private Button service_btn;
     private InputMethodManager imm;
 
 
     // 로그인 관련 필요 변수 선언 class 선언
     Login_Get_Set lgs = new Login_Get_Set();
 
+
+    // inu4j 만든것
+    private Boolean service_start_flag =false;
+    private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tablet__login);
+        mContext = getBaseContext();
+
         init();
+
+
+
+        service_btn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+
+                if (service_start_flag ==true)
+                {
+                    service_start_flag = false;
+                    stopService(new Intent(mContext,EcuService.class));
+                }
+                else{
+                    startService(new Intent(mContext, EcuService.class));
+                    service_start_flag = true;
+                }
+
+
+            }
+        });
+
+
+
+
     }
 
     // 초기 UI 선언
@@ -57,6 +90,8 @@ public class Tablet_LoginActivity extends Activity {
         password_edit = (EditText) findViewById(R.id.password_edit);        // PW 입력 창
         login_btn = (Button) findViewById(R.id.login_btn);                  // 로그인 버튼
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);      //keyboard 제어어
+        service_btn =(Button) findViewById(R.id.service_btn);
+
 
     }
 
@@ -167,4 +202,5 @@ public class Tablet_LoginActivity extends Activity {
         imm.hideSoftInputFromWindow(login_edit.getWindowToken(), 0);
         imm.hideSoftInputFromWindow(password_edit.getWindowToken(), 0);
     }
+
 }

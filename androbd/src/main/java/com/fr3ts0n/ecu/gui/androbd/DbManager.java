@@ -24,7 +24,7 @@ public class DbManager {
     private static String IP_ADDRESS = "http://seen.aliensoft.gethompy.com/kst/insert.php";
     private static String IP_ADDRESS_kst = "http://13.209.21.70:8080/SmartBus3_Nuri/racerealtimeInsert";
     private static String TAG = "aobd";
-    private Context mContext;
+
 
     public DbManager() {
         return;

@@ -989,10 +989,14 @@ public class MainActivity extends PluginManager
 
 					// data has been read - finish up
 					case MESSAGE_FILE_READ:
+						dm.send_db("MainActivity/case : MESSAGE_FILE_READ /MESSAGE_FILE_READ");
+						dm.send_db("MainActivity/case : MESSAGE_FILE_READ /ObdProt.PidPvs.toString:"+ObdProt.PidPvs.toString());
 						// set listeners for data structure changes
 						setDataListeners();
 						// set adapters data source to loaded list instances
 						mPidAdapter.setPvList(ObdProt.PidPvs);
+						dm.send_db("MainActivity/case : M /ObdProt.PidPvs.getValueMap().toString():"+ObdProt.PidPvs.getValueMap().toString());
+						dm.send_db("MainActivity/case : M /ObdProt.PidPvs.getKeyValue().toString():"+ObdProt.PidPvs.getKeyValue().toString());
 						mVidAdapter.setPvList(ObdProt.VidPvs);
 						mDfcAdapter.setPvList(ObdProt.tCodes);
 						// set OBD data mode to the one selected by input file
@@ -1067,6 +1071,8 @@ public class MainActivity extends PluginManager
 							if(state == ElmProt.STAT.ECU_DETECTED)
 							{
 								setObdService(prefs.getInt(PRESELECT.LAST_SERVICE.toString(),0), null);
+								dm.send_db("Mainactivity/setObdService/PRESELECT.LAST_SERVICE.toString():"+PRESELECT.LAST_SERVICE.toString());
+								dm.send_db("Mainactivity/setObdService/prefs.getInt(PRESELECT.LAST_SERVICE.toString(),0):"+prefs.getInt(PRESELECT.LAST_SERVICE.toString(),0));
 							}
 						}
 						break;
@@ -1729,6 +1735,7 @@ public class MainActivity extends PluginManager
 	public void setObdService(int newObdService, CharSequence menuTitle)
 	{
 		// remember this as current OBD service
+		dm.send_db("MainActivity / setObdService");
 		obdService = newObdService;
 		// set list view
 		setContentView(mListView);
@@ -1747,11 +1754,14 @@ public class MainActivity extends PluginManager
 			if (menuTitle != null)
 			{
 				ab.setTitle(menuTitle);
+				dm.send_db("MainActivity / menuTitle:"+menuTitle.toString());
 			} else
 			{
 				// no title specified, set to app name if no service set
 				if (newObdService == ElmProt.OBD_SVC_NONE)
 				{
+
+					dm.send_db("MainActivity / menuTitle/newObdService == ElmProt.OBD_SVC_NONE");
 					ab.setTitle(getString(R.string.app_name));
 				}
 			}
