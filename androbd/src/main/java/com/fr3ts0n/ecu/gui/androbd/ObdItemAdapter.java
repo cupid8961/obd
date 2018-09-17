@@ -42,9 +42,12 @@ import com.fr3ts0n.pvs.PvList;
 
 import org.achartengine.model.XYSeries;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -65,6 +68,9 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	transient SharedPreferences prefs;
 
 	private DbManager dm;
+	private ItemEcu ie;
+
+	private PerfManager pm;
 
 	public ObdItemAdapter(Context context, int resource, PvList pvs)
 	{
@@ -75,7 +81,12 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		mInflater = (LayoutInflater) context
 			.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		setPvList(pvs);
+
+		pm = new PerfManager(context);
+		ie = pm.get_pref_last_itemEcu();
+		dm.send_db("obdItemAdapter/ie.toString()"+ie.toString());
 	}
+
 
 	/**
 	 * set / update PV list
@@ -89,13 +100,16 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		isPidList = (pvs == ObdProt.PidPvs);
 		// get set to be displayed (filtered with preferences */
 		Collection<Object> filtered = getPreferredItems(pvs, SettingsActivity.KEY_DATA_ITEMS);
-		dm.send_db("ObdItemAdapter/setPvList/filtered.toString():"+filtered.toString());
+		//dm.send_db("ObdItemAdapter/setPvList/filtered.toString():"+filtered.toString());
 		// make it a sorted array
 		Object[] pidPvs = filtered.toArray();
+		/*
 		if (pidPvs.length > 0) {
+
 			dm.send_db("ObdItemAdapter/setPvList/pidPvs[0]" + pidPvs[0].toString());
 			dm.send_db("ObdItemAdapter/setPvList/pidPvs[length-1]" + pidPvs[(pidPvs.length - 1)].toString());
 		}
+		*/
 
 
 		Arrays.sort(pidPvs, pidSorter);
@@ -138,7 +152,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		// filter PVs with preference selections
 		Set<String> pidsToShow = prefs.getStringSet( SettingsActivity.KEY_DATA_ITEMS,
 		                                             (Set<String>)pvs.keySet());
-		dm.send_db("ObdItemAdapter/getPreferredItems/pidsToShow: " +pidsToShow.toString());
+		//dm.send_db("ObdItemAdapter/getPreferredItems/pidsToShow: " +pidsToShow.toString());
 
 		return getMatchingItems(pvs, pidsToShow);
 	}
@@ -241,11 +255,48 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		tvUnits.setText(currPv.getUnits());
 
 		if (send_flag) {
-			dm.send_db("obditemadapter/txt2 :"+txt2+" , fmtText : " + fmtText + ", tvUnits : " + currPv.getUnits());
+			dm.send_db("obditemadapter/라벨 :"+txt2+" , 수치 : " + fmtText + ", 단위 : " + currPv.getUnits());
 		}
+		check_pref_itemEcu(txt2,fmtText,currPv.getUnits());
+
 
 		return convertView;
 	}
+
+	private void check_pref_itemEcu(String label, String value, String unit) {
+		ie = pm.get_pref_last_itemEcu();
+		/*
+		int distance;
+		int velocity;
+		double fuelamount;
+		double internaltem;
+		double externaltem;
+		*/
+
+		if (label.contains("Distance since ECU reset")){
+			ie.distance = Integer.parseInt(value);
+			return ;
+		}else if(label.contains("Vehicle Speed")){
+			ie.velocity = Integer.parseInt(value);
+			return ;
+		}else if(label.contains("Fuel Level Input")){
+			ie.fuelamount = Integer.parseInt(value);
+			return ;
+		}else if(label.contains("Intake Air Temperature")){
+			ie.internaltem = Integer.parseInt(value);
+			return ;
+		}else if(label.contains("Ambient Air Temperature")){
+			ie.externaltem = Integer.parseInt(value);
+			return ;
+		}else if(label.contains("Number of Fault Codes")){
+			if(ie.no ==0) return ;
+			dm.send_db_kst(ie);
+			pm.no_last_plus();
+			ie = pm.get_pref_last_itemEcu();
+			return ;
+		}
+	}
+
 
 	/**
 	 * Add data series to all process variables
