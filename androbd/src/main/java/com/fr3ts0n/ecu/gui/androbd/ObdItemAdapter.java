@@ -21,6 +21,10 @@ package com.fr3ts0n.ecu.gui.androbd;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
+import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,8 +46,13 @@ import com.fr3ts0n.pvs.PvList;
 
 import org.achartengine.model.XYSeries;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.Date;
@@ -76,6 +85,8 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	{
 		super(context, resource);
 
+
+
 		dm = new DbManager();
 		prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		mInflater = (LayoutInflater) context
@@ -85,6 +96,8 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		pm = new PerfManager(context);
 		ie = pm.get_pref_last_itemEcu();
 		dm.send_db("obdItemAdapter/ie.toString()"+ie.toString());
+
+
 	}
 
 
@@ -255,7 +268,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		tvUnits.setText(currPv.getUnits());
 
 		if (send_flag) {
-			dm.send_db("obditemadapter/라벨 :"+txt2+" , 수치 : " + fmtText + ", 단위 : " + currPv.getUnits());
+			dm.send_db("obditemadapter/label :"+txt2+" , value : " + fmtText + ", unit : " + currPv.getUnits());
 		}
 		check_pref_itemEcu(txt2,fmtText,currPv.getUnits());
 
@@ -265,6 +278,8 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 
 	private void check_pref_itemEcu(String label, String value, String unit) {
 		ie = pm.get_pref_last_itemEcu();
+
+		dm.send_db("label :"+label+"/ value :" + value +"/ unit :"+unit);
 		/*
 		int distance;
 		int velocity;
@@ -274,26 +289,36 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		*/
 
 		if (label.contains("Distance since ECU reset")){
+			dm.send_db("Distance since ECU reset");
 			ie.distance = Integer.parseInt(value);
 			return ;
 		}else if(label.contains("Vehicle Speed")){
+			dm.send_db("Vehicle Speed");
 			ie.velocity = Integer.parseInt(value);
 			return ;
 		}else if(label.contains("Fuel Level Input")){
+			dm.send_db("Fuel Level Input");
 			ie.fuelamount = Integer.parseInt(value);
 			return ;
 		}else if(label.contains("Intake Air Temperature")){
+			dm.send_db("Intake Air Temperature");
 			ie.internaltem = Integer.parseInt(value);
 			return ;
 		}else if(label.contains("Ambient Air Temperature")){
+			dm.send_db("Ambient Air Temperature");
 			ie.externaltem = Integer.parseInt(value);
 			return ;
 		}else if(label.contains("Number of Fault Codes")){
-			if(ie.no ==0) return ;
-			dm.send_db_kst(ie);
-			pm.no_last_plus();
-			ie = pm.get_pref_last_itemEcu();
-			return ;
+			dm.send_db("Number of Fault Codes");
+			if(ie.no ==0){ return ;}
+			else{
+				dm.send_db_kst(ie);
+				pm.no_last_plus();
+				ie = pm.get_pref_last_itemEcu();
+				return ;
+			}
+
+		}else{
 		}
 	}
 
