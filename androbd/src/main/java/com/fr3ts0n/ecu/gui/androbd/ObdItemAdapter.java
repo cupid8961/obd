@@ -95,7 +95,9 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		setPvList(pvs);
 
 		pm = new PerfManager(context);
+
 		ie = pm.get_pref_last_itemEcu();
+		//Log.i("aobd_i","ObdItemAdapter");
 		dm.send_db("obdItemAdapter/ie.toString()"+ie.toString());
 
 
@@ -271,16 +273,13 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		if (send_flag) {
 			dm.send_db("obditemadapter/label :"+txt2+" , value : " + fmtText + ", unit : " + currPv.getUnits());
 		}
-		check_pref_itemEcu(txt2,fmtText,currPv.getUnits());
+		//check_pref_itemEcu(txt2,fmtText,currPv.getUnits());
 
 
 		return convertView;
 	}
 
 	private void check_pref_itemEcu(String label, String value, String unit) {
-		ie = pm.get_pref_last_itemEcu();
-
-		Log.i("aobd", "obdItemAdapter/check_pref_itemEcu /"+"label :"+label+"/ value :" + value +"/ unit :"+unit);
 
 		/*
 		int distance;
@@ -289,38 +288,68 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 		double internaltem;
 		double externaltem;
 		*/
+		//Log.i("aobd_i","check_pref_itemEcu/ie_toString():"+ie.toString());
 
 		if (label.contains("Distance since ECU reset")){
-			dm.send_db("Distance since ECU reset");
+			//dm.send_db("Distance since ECU reset");
+			value = value.substring(0, value.indexOf("."));
 			ie.distance = Integer.parseInt(value);
+
+			Log.i("aobd", "obdItemAdapter/check_pref_itemEcu /"+"label :"+label+"/ value :" + value +"/ unit :"+unit);
 			return ;
 		}else if(label.contains("Vehicle Speed")){
-			dm.send_db("Vehicle Speed");
+			//dm.send_db("Vehicle Speed");
+			value = value.substring(0, value.indexOf("."));
 			ie.velocity = Integer.parseInt(value);
+
+			Log.i("aobd", "obdItemAdapter/check_pref_itemEcu /"+"label :"+label+"/ value :" + value +"/ unit :"+unit);
 			return ;
 		}else if(label.contains("Fuel Level Input")){
-			dm.send_db("Fuel Level Input");
-			ie.fuelamount = Integer.parseInt(value);
+			//dm.send_db("Fuel Level Input");
+			ie.fuelamount = Double.parseDouble(value);
+
+			Log.i("aobd", "obdItemAdapter/check_pref_itemEcu /"+"label :"+label+"/ value :" + value +"/ unit :"+unit);
 			return ;
 		}else if(label.contains("Intake Air Temperature")){
-			dm.send_db("Intake Air Temperature");
-			ie.internaltem = Integer.parseInt(value);
+			//dm.send_db("Intake Air Temperature");
+			ie.internaltem = Double.parseDouble(value);
+
+			Log.i("aobd", "obdItemAdapter/check_pref_itemEcu /"+"label :"+label+"/ value :" + value +"/ unit :"+unit);
 			return ;
 		}else if(label.contains("Ambient Air Temperature")){
-			dm.send_db("Ambient Air Temperature");
-			ie.externaltem = Integer.parseInt(value);
+			//dm.send_db("Ambient Air Temperature");
+			ie.externaltem = Double.parseDouble(value);
+
+			Log.i("aobd", "obdItemAdapter/check_pref_itemEcu /"+"label :"+label+"/ value :" + value +"/ unit :"+unit);
 			return ;
 		}else if(label.contains("Number of Fault Codes")){
-			dm.send_db("Number of Fault Codes");
+			//dm.send_db("Number of Fault Codes");
 
-				dm.send_db_kst(ie);
-				pm.no_last_plus();
-				ie = pm.get_pref_last_itemEcu();
+			Log.i("aobd", "obdItemAdapter/check_pref_itemEcu /"+"label :"+label+"/ value :" + value +"/ unit :"+unit);
 				return ;
 
 
-		}else{
-			Log.i("aobd", "obdItemAdapter/check_pref_itemEcu / else");
+		}else if(label.contains("Engine RPM")){
+			//dm.send_db("Engine RPM");
+
+			Log.i("aobd", "obdItemAdapter/check_pref_itemEcu /"+"label :"+label+"/ value :" + value +"/ unit :"+unit);
+			Log.i("aobd", "ie.tostring :"+(ie.toString()));
+			dm.send_db_kst(ie,"real");
+			//pm.no_last_plus();
+			//ie = pm.get_pref_last_itemEcu();
+
+
+
+			return ;
+
+		}
+
+
+
+
+
+		else{
+			//Log.i("aobd", "obdItemAdapter/check_pref_itemEcu / else");
 		}
 	}
 
@@ -330,6 +359,8 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	 */
 	protected synchronized void addAllDataSeries()
 	{
+		Log.i("aobd","ObdItemAdapter/addAllDataSeries");
+
 		String pluginStr = "";
 		for (IndexedProcessVar pv : (Iterable<IndexedProcessVar>) pvs.values())
 		{
@@ -347,6 +378,8 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 										String.valueOf(pv.get(EcuDataPv.FID_VALUE)),
 				                        pv.get(EcuDataPv.FID_UNITS)
 			                          );
+			//check_pref_itemEcu(""+pv.get(EcuDataPv.FID_DESCRIPT),String.valueOf(pv.get(EcuDataPv.FID_VALUE)),""+pv.get(EcuDataPv.FID_UNITS));
+
 		}
 
 		// notify plugins
@@ -361,7 +394,9 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 
 	@Override
 	public void pvChanged(PvChangeEvent event)
+
 	{
+		//Log.i("aobd","ObdItemAdapter/pvChanged");
 		if (allowDataUpdates)
 		{
 			IndexedProcessVar pv = (IndexedProcessVar) event.getSource();
@@ -372,7 +407,7 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 				{
 					series.add(event.getTime(),
 						((Number)event.getValue()).doubleValue());
-					//dm.send_db("ObdItemAdapter/((Number)event.getValue()).doubleValue() : "+((Number)event.getValue()).doubleValue());
+					//Log.i("aobd","ObdItemAdapter/((Number)event.getValue()).doubleValue() : "+((Number)event.getValue()).doubleValue());
 				}
 			}
 
@@ -383,8 +418,12 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 					pv.get(EcuDataPv.FID_MNEMONIC).toString(),
 					event.getValue().toString());
 				if ((pv.get(EcuDataPv.FID_MNEMONIC).toString()).contains("peed")) {
+
+					//Log.i("aobd","ObdItemAdapter/(pv.get(EcuDataPv.FID_MNEMONIC).toString()).contains(peed)");
 					dm.send_db("ObdItemAdapter/pv.get(EcuDataPv.FID_MNEMONIC).toString() : " + pv.get(EcuDataPv.FID_MNEMONIC).toString() + ",event.getValue().toString():" + event.getValue().toString());
 				}
+				//Log.i("aobd","ObdItemAdapter/sendDataUpdate:str: "+pv.get(EcuDataPv.FID_DESCRIPT)+" / "+String.valueOf(pv.get(EcuDataPv.FID_VALUE))+" / "+pv.get(EcuDataPv.FID_UNITS));
+				check_pref_itemEcu(""+pv.get(EcuDataPv.FID_DESCRIPT),String.valueOf(pv.get(EcuDataPv.FID_VALUE)),""+pv.get(EcuDataPv.FID_UNITS));
 
 			}
 		}

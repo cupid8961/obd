@@ -32,11 +32,11 @@ public class DbManager {
         return;
     }
 
-    void send_db_kst(ItemEcu lie) {
-        Log.i("aobd", "send_db_kst");
+    void send_db_kst(ItemEcu lie, String msg) {
+        Log.i("aobd", "send_db_kst / "+msg);
         //int my_distance, int my_velocity, double my_fuelamount, double my_internaltem, double my_externaltem, String my_errorlog
         InsertData_kst task = new InsertData_kst();
-        Log.i("aobd",lie.toString());
+        Log.i("aobd_i","lie/"+msg+"/: "+lie.toString());
         task.execute(lie);
 
     }
@@ -133,6 +133,17 @@ public class DbManager {
 
                 try {
 
+                    //정보가 너무 많아서 1/100만가게 임시로 만듬
+                    /*
+                    Random rnd = new Random();
+                    int rna_value = rnd.nextInt(100);
+                    if(rna_value<5) {
+                        is = httpCon.getInputStream();
+                    }
+                    else{
+                        return "rand error";
+                    }*/
+
                     is = httpCon.getInputStream();
 
                     // convert inputstream to string
@@ -176,12 +187,8 @@ public class DbManager {
     }
 
 
-
-
-
-
     void send_db(String my_errorlog) {
-        Log.i("aobd", "send_db/my_errorlog"+my_errorlog);
+        //Log.i("aobd", "send_db/inu4j /"+my_errorlog);
 
         long time_now = System.currentTimeMillis();
         SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
@@ -226,7 +233,7 @@ public class DbManager {
             super.onPostExecute(result);
 
 //            progressDialog.dismiss();
-            Log.d(TAG, "POST response  - " + result);
+            //Log.d(TAG, "POST response  - " + result);
         }
 
 
@@ -244,8 +251,8 @@ public class DbManager {
 
             String postParameters = "time=" + time + "&velocity=" + velocity + "&distance=" + distance + "&fuel=" + fuel + "&errorlog=" + errorlog;
 
-            Log.d(TAG, "serverURL : " + serverURL);
-            Log.d(TAG, "postParameters : " + postParameters);
+            //Log.d(TAG, "serverURL : " + serverURL);
+            //Log.d(TAG, "postParameters : " + postParameters);
 
             try {
 
@@ -266,7 +273,7 @@ public class DbManager {
 
 
                 int responseStatusCode = httpURLConnection.getResponseCode();
-                Log.d(TAG, "POST response code - " + responseStatusCode);
+                //Log.d(TAG, "POST response code - " + responseStatusCode);
 
                 InputStream inputStream;
                 if (responseStatusCode == HttpURLConnection.HTTP_OK) {

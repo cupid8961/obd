@@ -35,6 +35,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -361,11 +362,19 @@ public class MainActivity extends PluginManager
 
         // set up logging ...
         String logFileName = FileHelper.getPath(this).concat(File.separator).concat("log");
+
         try {
             // ensure log directory is available
             new File(logFileName).mkdirs();
             // Create new log file handler (max. 250 MB, 5 files rotated, non appending)
+            /*
             logFileHandler = new FileHandler(logFileName.concat("/AndrOBD.log.%g.txt"),
+                    250 * 1024 * 1024,
+                    5,
+                    false);
+                    */
+
+            logFileHandler = new FileHandler(logFileName.concat("/AndrOBD.log.txt"),
                     250 * 1024 * 1024,
                     5,
                     false);
@@ -589,7 +598,7 @@ public class MainActivity extends PluginManager
             // ... turn it OFF again
             mBluetoothAdapter.disable();
         }
-
+        Log.i("aobd","aobd destoryed");
         log.info(String.format("%s %s finished",
                 getString(R.string.app_name),
                 getString(R.string.app_version)));
@@ -687,7 +696,7 @@ public class MainActivity extends PluginManager
                 // toggle night mode setting
 
                 dm.send_db("ok");
-                dm.send_db_kst(pm.get_pref_last_itemEcu());
+                dm.send_db_kst(pm.get_pref_last_itemEcu(),"debug01");
                 pm.no_last_plus();
 
                 return true;
@@ -1561,7 +1570,7 @@ public class MainActivity extends PluginManager
      * @param cnvId ID for metric/imperial conversion
      */
     void setConversionSystem(int cnvId) {
-        log.info("Conversion: " + getResources().getStringArray(R.array.measure_options)[cnvId]);
+        //log.info("Conversion: " + getResources().getStringArray(R.array.measure_options)[cnvId]);
         if (EcuDataItem.cnvSystem != cnvId) {
             // set coversion system
             EcuDataItem.cnvSystem = cnvId;
