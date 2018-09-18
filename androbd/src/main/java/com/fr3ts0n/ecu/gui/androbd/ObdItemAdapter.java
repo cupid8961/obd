@@ -331,9 +331,14 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 
 		}else if(label.contains("Engine RPM")){
 			//dm.send_db("Engine RPM");
-
+			long time_now = System.currentTimeMillis();
+			SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			String time_str = dayTime.format(new Date(time_now));
+			ie.timenow = time_str;
 			Log.i("aobd", "obdItemAdapter/check_pref_itemEcu /"+"label :"+label+"/ value :" + value +"/ unit :"+unit);
 			Log.i("aobd", "ie.tostring :"+(ie.toString()));
+
+
 			dm.send_db_kst(ie,"real");
 			//pm.no_last_plus();
 			//ie = pm.get_pref_last_itemEcu();
