@@ -26,6 +26,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -279,7 +280,8 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 	private void check_pref_itemEcu(String label, String value, String unit) {
 		ie = pm.get_pref_last_itemEcu();
 
-		dm.send_db("label :"+label+"/ value :" + value +"/ unit :"+unit);
+		Log.i("aobd", "obdItemAdapter/check_pref_itemEcu /"+"label :"+label+"/ value :" + value +"/ unit :"+unit);
+
 		/*
 		int distance;
 		int velocity;
@@ -310,15 +312,15 @@ public class ObdItemAdapter extends ArrayAdapter<Object>
 			return ;
 		}else if(label.contains("Number of Fault Codes")){
 			dm.send_db("Number of Fault Codes");
-			if(ie.no ==0){ return ;}
-			else{
+
 				dm.send_db_kst(ie);
 				pm.no_last_plus();
 				ie = pm.get_pref_last_itemEcu();
 				return ;
-			}
+
 
 		}else{
+			Log.i("aobd", "obdItemAdapter/check_pref_itemEcu / else");
 		}
 	}
 
